@@ -4,16 +4,38 @@ orbs:
   node: circleci/node@5.2.0
 
 jobs:
-  deploy:
+  test:
+    docker:
+      - image: circleci/node:14
     steps:
-      - run: ssh -oStrictHostKeyChecking=no -v $USER@$DNS "./deploy.sh"
+      - checkout
+      - run:
+          name: Install Dependencies
+          command: npm install
+      - run:
+          name: Run Tests
+          command: npm test
+
+  deploy:
+    docker:
+      - image: circleci/python:3.8  # Thay đổi hình ảnh Docker tùy theo yêu cầu của bạn
+    steps:
+      - checkout
+      - run:
+          name: Deploy to EC2
+          command: |
+            echo "Deploying to EC2..."
+            ssh -oStrictHostKeyChecking=no -v $USER@$DNS "./deploy.sh"
 
 workflows:
-  aqtech_backend:
+  version: 2
+  deploy:
     jobs:
-      - node/test
+      - test
       - deploy:
-        filters:
-          branches:
-            only:
-              - main
+          requires:
+            - test
+          filters:
+            branches:
+              only:
+                - main
