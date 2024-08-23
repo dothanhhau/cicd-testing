@@ -3,6 +3,11 @@ version: 2.1
 orbs:
   node: circleci/node@5.2.0
 
+jobs:
+  deploy:
+    steps:
+      - run: ssh -oStrictHostKeyChecking=no -v $USER@$DNS "./deploy.sh"
+
 workflows:
   aqtech_backend:
     jobs:
