@@ -17,10 +17,9 @@ jobs:
   #         command: npm test
 
   deploy:
-    docker:
-      - image: circleci/python:3.8  # Thay đổi hình ảnh Docker tùy theo yêu cầu của bạn
+    machine: true
     steps:
-      - checkout
+      # - checkout
       - run:
           name: Deploy to EC2
           command: |
