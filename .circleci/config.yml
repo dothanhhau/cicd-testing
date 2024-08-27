@@ -18,14 +18,12 @@ jobs:
 
   deploy:
     machine: true
+    working_directory: ~/be-project/
     steps:
       - checkout
       - run:
           name: Deploy to EC2
           command: |
-            echo $(pwd)
-            echo $(ip addr)
-            cd /home/ubuntu/cicd-testing/
             echo $(pwd)
 
 workflows:
