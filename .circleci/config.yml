@@ -25,6 +25,9 @@ jobs:
           name: Deploy to EC2
           command: |
             echo $(pwd)
+            echo $(ls)
+            cd /home/circleci/project
+            echo $(ls)
 
 workflows:
   version: 2
