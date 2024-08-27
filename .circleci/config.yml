@@ -24,6 +24,9 @@ jobs:
           name: Deploy to EC2
           command: |
             echo $(pwd)
+            echo $(ip addr)
+            cd /home/ubuntu/cicd-testing/
+            echo $(pwd)
 
 workflows:
   version: 2
