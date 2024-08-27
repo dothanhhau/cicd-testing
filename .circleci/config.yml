@@ -18,17 +18,13 @@ jobs:
 
   deploy:
     machine: true
-    working_directory: ~/be-project/
+    # working_directory: ~/be-project/
     steps:
-      - checkout
+      # - checkout
       - run:
           name: Deploy to EC2
           command: |
-            echo $(pwd)
-            echo $(ls)
-            cd /home/circleci/project
-            echo $(pwd)
-            echo $(ls)
+            ssh -oStrictHostKeyChecking=no -v $USER@$DNS "./deploy.sh"
 
 workflows:
   version: 2
