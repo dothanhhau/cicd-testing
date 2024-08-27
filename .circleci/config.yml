@@ -19,12 +19,11 @@ jobs:
   deploy:
     machine: true
     steps:
-      # - checkout
+      - checkout
       - run:
           name: Deploy to EC2
           command: |
-            echo "Deploying to EC2..."
-            ssh -oStrictHostKeyChecking=no -v $USER@$DNS "./deploy.sh"
+            echo $(pwd)
 
 workflows:
   version: 2
@@ -38,4 +37,5 @@ workflows:
             branches:
               only:
                 - main
+#            ssh -oStrictHostKeyChecking=no -v $USER@$DNS "./deploy.sh"
 
