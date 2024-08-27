@@ -27,6 +27,7 @@ jobs:
             echo $(pwd)
             echo $(ls)
             cd /home/circleci/project
+            echo $(pwd)
             echo $(ls)
 
 workflows:
