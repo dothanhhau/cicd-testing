@@ -19,7 +19,7 @@ jobs:
   deploy:
     machine: true
     resource_class: wmyb4q8hwimxma5g4wnalz/testting
-    # working_directory: ~/be-project/
+    working_directory: ~/be-project/
     steps:
       - checkout
       - run:
